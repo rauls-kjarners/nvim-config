@@ -29,7 +29,9 @@ map("n", "<S-k>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.api.nvim_create_autocmd("TermOpen", {
     group = vim.api.nvim_create_augroup("custom-term-nav", { clear = true }),
     callback = function()
-        if vim.b.snacks_terminal then return end
+        if vim.b.snacks_terminal then
+            return
+        end
 
         vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>h", { buffer = 0, desc = "Go to Left Window" })
         vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>j", { buffer = 0, desc = "Go to Lower Window" })
@@ -76,4 +78,6 @@ map("n", "<leader>cM", function()
 end, { desc = "Phpactor: Move Class" })
 
 -- Terminal toggle workaround (Ctrl+/ translates to Ctrl+- via WezTerm/Herdr)
-map({ "n", "i", "t" }, "<C-->", function() Snacks.terminal() end, { desc = "Toggle Terminal" })
+map({ "n", "i", "t" }, "<C-->", function()
+    Snacks.terminal()
+end, { desc = "Toggle Terminal" })

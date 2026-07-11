@@ -1,19 +1,22 @@
 # Neovim Configuration 🌙
 
-Modern, highly-extensible Neovim configuration built around [LazyVim](https://www.lazyvim.org/). 
+[![CI](https://github.com/rauls-kjarners/nvim-config/actions/workflows/ci.yml/badge.svg)](https://github.com/rauls-kjarners/nvim-config/actions/workflows/ci.yml)
+[![Neovim](https://img.shields.io/badge/Neovim-0.10+-blueviolet.svg)](https://neovim.io/)
 
-This repository contains purely editor configuration and UI logic. It is decoupled from the host system configuration to ensure maximum portability across macOS, Linux, SSH sessions, and containers.
+Modern, strict, highly-extensible Neovim configuration built around [LazyVim](https://www.lazyvim.org/).
+
+This repository contains purely editor configuration and UI logic. It is strictly decoupled from host system configuration to ensure maximum portability across macOS, Linux, SSH sessions, and containers. Protected by an automated CI pipeline ensuring zero startup errors.
 
 ## 🚀 Installation
 
-Ensure you have Neovim (>= 0.9.0) installed.
+Ensure you have Neovim (>= **0.10.0**) installed.
 
 ```bash
 # Backup existing config (if any)
 mv ~/.config/nvim ~/.config/nvim.bak
 
 # Clone this repository
-git clone https://github.com/YOUR_USERNAME/nvim-config ~/.config/nvim
+git clone https://github.com/rauls-kjarners/nvim-config ~/.config/nvim
 
 # Start Neovim (Lazy.nvim will automatically bootstrap and install plugins)
 nvim
