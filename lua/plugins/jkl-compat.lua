@@ -56,20 +56,4 @@ return {
             },
         },
     },
-
-    -- Neo-tree override (jkl; navigation scheme: j=left/close, k=down, l=up/none, ;=right/open)
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        opts = {
-            window = {
-                mappings = {
-                    ["l"] = "none", -- Fall back to global k (Move Up)
-                    ["k"] = "none", -- Fall back to global j (Move Down)
-                    ["j"] = "close_node", -- Explicit Neo-tree command for Left
-                    [";"] = "open", -- Explicit Neo-tree command for Right
-                    ["h"] = "none", -- Clear LazyVim's default close_node mapping on h
-                },
-            },
-        },
-    },
 }

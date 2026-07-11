@@ -95,4 +95,15 @@ return {
             return opts
         end,
     },
+
+    -- 4. Stop Mason from installing disabled PHP tools
+    {
+        "mason-org/mason.nvim",
+        opts = function(_, opts)
+            opts.ensure_installed = opts.ensure_installed or {}
+            opts.ensure_installed = vim.tbl_filter(function(name)
+                return name ~= "php-cs-fixer" and name ~= "phpcbf" and name ~= "phpcs"
+            end, opts.ensure_installed)
+        end,
+    },
 }

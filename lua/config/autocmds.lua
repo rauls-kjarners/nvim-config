@@ -7,7 +7,7 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- Aggressive Auto-Reload: Check for file changes when you stop typing or enter buffer
+-- Aggressive Auto-Reload: Check for file changes on idle or buffer enter
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "FocusGained", "BufEnter" }, {
     desc = "Aggressively check for file changes outside of Neovim",
     callback = function()
@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "FocusGained", "BufEn
     end,
 })
 
--- Safe Auto-Save: Saves only when you click out of Neovim or switch files
+-- Safe Auto-Save: Saves only on focus loss or buffer switch
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
     desc = "Auto Save on focus lost and buffer leave",
     callback = function()

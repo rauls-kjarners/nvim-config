@@ -7,6 +7,17 @@ return {
                     explorer = {
                         hidden = true,
                         ignored = true,
+                        exclude = {
+                            ".git/",
+                            "node_modules/",
+                            ".idea/",
+                            ".venv/",
+                            "__pycache__/",
+                            "dist/",
+                            "build/",
+                            ".next/",
+                            ".DS_Store",
+                        },
                         layout = {
                             preview = true,
                             layout = {
@@ -22,9 +33,51 @@ return {
                             },
                         },
                     }, -- <leader>e (File Explorer)
-                    files = { hidden = true, ignored = true }, -- <leader>ff (Find Files)
-                    smart = { hidden = true, ignored = true }, -- <leader><space> (Smart Find Files)
-                    grep = { hidden = true, ignored = true }, -- <leader>sg (Live Grep)
+                    files = {
+                        hidden = true,
+                        ignored = true,
+                        exclude = {
+                            ".git/",
+                            "node_modules/",
+                            ".idea/",
+                            ".venv/",
+                            "__pycache__/",
+                            "dist/",
+                            "build/",
+                            ".next/",
+                            ".DS_Store",
+                        },
+                    }, -- <leader>ff (Find Files)
+                    smart = {
+                        hidden = true,
+                        ignored = true,
+                        exclude = {
+                            ".git/",
+                            "node_modules/",
+                            ".idea/",
+                            ".venv/",
+                            "__pycache__/",
+                            "dist/",
+                            "build/",
+                            ".next/",
+                            ".DS_Store",
+                        },
+                    }, -- <leader><space> (Smart Find Files)
+                    grep = {
+                        hidden = true,
+                        ignored = true,
+                        exclude = {
+                            ".git/",
+                            "node_modules/",
+                            ".idea/",
+                            ".venv/",
+                            "__pycache__/",
+                            "dist/",
+                            "build/",
+                            ".next/",
+                            ".DS_Store",
+                        },
+                    }, -- <leader>sg (Live Grep)
                 },
             },
             terminal = {

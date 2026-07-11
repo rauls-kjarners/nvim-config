@@ -2,7 +2,7 @@
 -- refactoring.nvim: extract function/variable, inline variable
 -- treesj: split/join blocks (one-liner ↔ multi-line)
 -- substitute.nvim: `s` operator — replace motion target with yanked text
--- iswap.nvim: swap function arguments and array elements
+-- sibling-swap.nvim: swap function arguments and array elements
 --
 -- NOTE: LazyVim maps `s` to flash.nvim by default.
 -- We remove flash's `s`/`S` keys here and give them to substitute.nvim.
@@ -109,11 +109,24 @@ return {
 
     -- Swap function arguments / array elements interactively
     {
-        "mizlan/iswap.nvim",
-        opts = {},
+        "Wansmer/sibling-swap.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = { use_default_keymaps = false },
         keys = {
-            { "<leader>rS", "<cmd>ISwap<cr>", desc = "Refactor: swap arguments (pick)" },
-            { "<leader>rs", "<cmd>ISwapWith<cr>", desc = "Refactor: swap with next" },
+            {
+                "<leader>rs",
+                function()
+                    require("sibling-swap").swap_with_right()
+                end,
+                desc = "Refactor: swap with next",
+            },
+            {
+                "<leader>rS",
+                function()
+                    require("sibling-swap").swap_with_left()
+                end,
+                desc = "Refactor: swap with prev",
+            },
         },
     },
 }

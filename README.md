@@ -1,7 +1,7 @@
 # Neovim Configuration 🌙
 
 [![CI](https://github.com/rauls-kjarners/nvim-config/actions/workflows/ci.yml/badge.svg)](https://github.com/rauls-kjarners/nvim-config/actions/workflows/ci.yml)
-[![Neovim](https://img.shields.io/badge/Neovim-0.10+-blueviolet.svg)](https://neovim.io/)
+[![Neovim](https://img.shields.io/badge/Neovim-0.12+-blueviolet.svg)](https://neovim.io/)
 
 Modern, strict, highly-extensible Neovim configuration built around [LazyVim](https://www.lazyvim.org/).
 
@@ -9,7 +9,7 @@ This repository contains purely editor configuration and UI logic. It is strictl
 
 ## 🚀 Installation
 
-Ensure you have Neovim (>= **0.10.0**) installed.
+Requires Neovim (>= **0.12.0**) installed
 
 ```bash
 # Backup existing config (if any)
@@ -24,7 +24,7 @@ nvim
 
 ## 📦 Dependencies
 
-To keep this configuration portable, system-level dependencies and LSPs are intentionally **not** managed here. Ensure your host system (or Nix flake) provides:
+To keep this configuration portable, system-level dependencies and LSPs are intentionally **not** managed here. Ensure the host system (or Nix flake) provides:
 
 - **Core:** `git`, `ripgrep`, `fd`, `lazygit`
 - **Compilers:** `gcc` / `make` (for tree-sitter parsers)
