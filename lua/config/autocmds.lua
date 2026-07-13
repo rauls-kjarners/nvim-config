@@ -28,10 +28,27 @@ vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
     end,
 })
 
--- Force WinSeparator visible (fixes invisible splits in Dracula and similar themes)
-local function set_border_highlights()
-    vim.api.nvim_set_hl(0, "WinSeparator", { link = "Keyword" })
-    vim.api.nvim_set_hl(0, "SnacksWinSeparator", { link = "Keyword" })
+-- Fix low-contrast grey text (like .gitignore) when switching light/dark modes
+local function apply_contrast_fixes()
+    if vim.o.background == "light" then
+        local light_grey = "#504945"
+        -- vim.api.nvim_set_hl(0, "Comment", { fg = light_grey, italic = true })
+        vim.api.nvim_set_hl(0, "NonText", { fg = light_grey })
+        vim.api.nvim_set_hl(0, "SnacksPickerPathIgnored", { fg = light_grey })
+        vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", { fg = light_grey })
+    else
+        local dark_grey = "#a89984"
+        -- vim.api.nvim_set_hl(0, "Comment", { fg = dark_grey, italic = true })
+        vim.api.nvim_set_hl(0, "NonText", { fg = dark_grey })
+        vim.api.nvim_set_hl(0, "SnacksPickerPathIgnored", { fg = dark_grey })
+        vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", { fg = dark_grey })
+    end
 end
-set_border_highlights()
-vim.api.nvim_create_autocmd("ColorScheme", { callback = set_border_highlights })
+
+-- Apply immediately on startup
+apply_contrast_fixes()
+
+-- And apply whenever the theme changes dynamically
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = apply_contrast_fixes,
+})
