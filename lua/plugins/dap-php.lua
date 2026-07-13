@@ -24,7 +24,7 @@ return {
     {
         "mfussenegger/nvim-dap",
         optional = true,
-        config = function()
+        opts = function()
             local dap = require("dap")
 
             dap.adapters.php = {

@@ -16,8 +16,6 @@ return {
                 desc = "Toggle Oh My Pi",
             },
         },
-        config = function()
-            require("omp").setup()
-        end,
+        opts = {},
     },
 }
