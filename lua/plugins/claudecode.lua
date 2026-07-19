@@ -13,7 +13,7 @@ return {
         dependencies = { "folke/snacks.nvim" },
         event = "VeryLazy", -- start WebSocket server at startup so external
         -- `claude --ide` / `/ide` in a separate pane can attach
-        config = true,
+        opts = {},
         keys = {
             { "<leader>a", nil, desc = "AI/Claude Code" },
             { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },

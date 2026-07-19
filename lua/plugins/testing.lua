@@ -1,4 +1,4 @@
--- Testing: neotest with PHPUnit and Pest adapters
+-- Testing: neotest with PHPUnit adapter
 -- Extends LazyVim's test.core extra (which provides neotest + UI keymaps)
 
 return {
@@ -35,7 +35,7 @@ return {
             opts.adapters = opts.adapters or {}
             opts.discovery = {
                 concurrent = 0,
-                filter_dir = function(name, rel_path, root)
+                filter_dir = function(_name, rel_path, _root)
                     return rel_path == "tests" or string.match(rel_path, "^tests/") ~= nil
                 end,
             }

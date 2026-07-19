@@ -21,6 +21,15 @@ return {
                     root_dir = require("lspconfig.util").root_pattern("composer.json", ".git"),
                     autostart = true,
                 }
+                opts.setup = opts.setup or {}
+                opts.setup["php-lsp"] = function(_, server_opts)
+                    local configs = require("lspconfig.configs")
+                    if not configs["php-lsp"] then
+                        configs["php-lsp"] = { default_config = server_opts }
+                    end
+                    require("lspconfig")["php-lsp"].setup(server_opts)
+                    return true
+                end
             else
                 -- intelephense: fallback if php-lsp is not present
                 opts.servers.intelephense = opts.servers.intelephense or {}
@@ -48,16 +57,6 @@ return {
                         },
                     },
                 }
-            end
-
-            opts.setup = opts.setup or {}
-            opts.setup["php-lsp"] = function(_, server_opts)
-                local configs = require("lspconfig.configs")
-                if not configs["php-lsp"] then
-                    configs["php-lsp"] = { default_config = server_opts }
-                end
-                require("lspconfig")["php-lsp"].setup(server_opts)
-                return true
             end
 
             -- Autocommand for LSP tweaks
@@ -104,6 +103,7 @@ return {
             opts.ensure_installed = vim.tbl_filter(function(name)
                 return name ~= "php-cs-fixer" and name ~= "phpcbf" and name ~= "phpcs"
             end, opts.ensure_installed)
+            return opts
         end,
     },
 }

@@ -6,8 +6,6 @@ return {
             vim.list_extend(opts.ensure_installed, {
                 "scss",
                 "css",
-                "typescript",
-                "json",
             })
             return opts
         end,

@@ -9,6 +9,7 @@
 
 -- Aggressive Auto-Reload: Check for file changes on idle or buffer enter
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI", "FocusGained", "BufEnter" }, {
+    group = vim.api.nvim_create_augroup("custom_auto_reload", { clear = true }),
     desc = "Aggressively check for file changes outside of Neovim",
     callback = function()
         if vim.o.buftype ~= "nofile" then

@@ -29,10 +29,6 @@ return {
     },
     {
         "LazyVim/LazyVim",
-        opts = function(_, opts)
-            opts = type(opts) == "table" and opts or {}
-            opts.colorscheme = "gruvbox-material"
-            return opts
-        end,
+        opts = { colorscheme = "gruvbox-material" },
     },
 }

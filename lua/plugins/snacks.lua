@@ -1,23 +1,36 @@
+local exclude = {
+    ".git/",
+    "node_modules/",
+    ".idea/",
+    ".venv/",
+    "__pycache__/",
+    "dist/",
+    "build/",
+    ".next/",
+    ".DS_Store",
+}
+
 return {
     {
         "folke/snacks.nvim",
+        keys = {
+            -- Terminal toggle workaround (Ctrl+/ translates to Ctrl+- via WezTerm/Herdr)
+            {
+                "<C-->",
+                function()
+                    Snacks.terminal()
+                end,
+                mode = { "n", "i", "t" },
+                desc = "Toggle Terminal",
+            },
+        },
         opts = {
             picker = {
                 sources = {
                     explorer = {
                         hidden = true,
                         ignored = true,
-                        exclude = {
-                            ".git/",
-                            "node_modules/",
-                            ".idea/",
-                            ".venv/",
-                            "__pycache__/",
-                            "dist/",
-                            "build/",
-                            ".next/",
-                            ".DS_Store",
-                        },
+                        exclude = exclude,
                         layout = {
                             preview = true,
                             layout = {
@@ -32,52 +45,62 @@ return {
                                 { win = "preview", title = "{preview}", height = 20, border = "top" },
                             },
                         },
+                        win = {
+                            input = {
+                                keys = {
+                                    ["l"] = { "list_up", mode = "n" },
+                                    ["k"] = { "list_down", mode = "n" },
+                                    ["j"] = { "explorer_close", mode = "n" },
+                                    [";"] = { "confirm", mode = "n" },
+                                    ["h"] = false,
+                                },
+                            },
+                            list = {
+                                keys = {
+                                    ["l"] = "list_up",
+                                    ["k"] = "list_down",
+                                    ["j"] = "explorer_close",
+                                    [";"] = "confirm",
+                                    ["h"] = false,
+                                },
+                            },
+                        },
                     }, -- <leader>e (File Explorer)
                     files = {
                         hidden = true,
                         ignored = true,
-                        exclude = {
-                            ".git/",
-                            "node_modules/",
-                            ".idea/",
-                            ".venv/",
-                            "__pycache__/",
-                            "dist/",
-                            "build/",
-                            ".next/",
-                            ".DS_Store",
-                        },
+                        exclude = exclude,
                     }, -- <leader>ff (Find Files)
                     smart = {
                         hidden = true,
                         ignored = true,
-                        exclude = {
-                            ".git/",
-                            "node_modules/",
-                            ".idea/",
-                            ".venv/",
-                            "__pycache__/",
-                            "dist/",
-                            "build/",
-                            ".next/",
-                            ".DS_Store",
-                        },
+                        exclude = exclude,
                     }, -- <leader><space> (Smart Find Files)
                     grep = {
                         hidden = true,
                         ignored = true,
-                        exclude = {
-                            ".git/",
-                            "node_modules/",
-                            ".idea/",
-                            ".venv/",
-                            "__pycache__/",
-                            "dist/",
-                            "build/",
-                            ".next/",
-                            ".DS_Store",
-                        },
+                        exclude = exclude,
                     }, -- <leader>sg (Live Grep)
+                },
+                win = {
+                    input = {
+                        keys = {
+                            -- Adapt picker keys to j=left k=down l=up ;=right scheme
+                            ["<C-j>"] = false,
+                            ["<C-k>"] = { "list_down", mode = { "i", "n" } },
+                            ["<C-l>"] = { "list_up", mode = { "i", "n" } },
+                            ["j"] = false,
+                            ["k"] = { "list_down", mode = "n" },
+                            ["l"] = { "list_up", mode = "n" },
+                        },
+                    },
+                    list = {
+                        keys = {
+                            ["j"] = false,
+                            ["k"] = "list_down",
+                            ["l"] = "list_up",
+                        },
+                    },
                 },
             },
             terminal = {
@@ -140,7 +163,7 @@ return {
                     height = 20,
                 },
                 lazygit = {
-                    width = 0,
+                    width = 0, -- fullscreen
                     height = 0,
                 },
             },

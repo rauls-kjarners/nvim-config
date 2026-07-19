@@ -1,7 +1,6 @@
 return {
     {
         "rauls-kjarners/omp.nvim",
-        lazy = false,
         keys = {
             {
                 "<leader>ao",

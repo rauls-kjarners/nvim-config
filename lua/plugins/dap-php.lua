@@ -12,7 +12,6 @@ return {
     -- Ensure Mason installs the PHP debug adapter
     {
         "mason-org/mason.nvim",
-        lazy = true,
         opts = function(_, opts)
             opts.ensure_installed = opts.ensure_installed or {}
             vim.list_extend(opts.ensure_installed, { "php-debug-adapter" })

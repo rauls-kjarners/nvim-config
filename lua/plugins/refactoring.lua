@@ -129,4 +129,15 @@ return {
             },
         },
     },
+
+    -- Register <leader>r group label in which-key
+    {
+        "folke/which-key.nvim",
+        optional = true,
+        opts = {
+            spec = {
+                { "<leader>r", group = "Refactor" },
+            },
+        },
+    },
 }
