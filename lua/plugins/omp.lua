@@ -1,6 +1,7 @@
 return {
     {
         "rauls-kjarners/omp.nvim",
+        event = "VeryLazy",
         keys = {
             {
                 "<leader>ao",
