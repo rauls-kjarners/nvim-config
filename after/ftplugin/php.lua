@@ -7,6 +7,11 @@ vim.b.did_ftplugin_php_custom = true
 
 local map = vim.keymap.set
 
+vim.bo.shiftwidth = 4
+vim.bo.tabstop = 4
+vim.bo.softtabstop = 4
+vim.bo.expandtab = true
+
 -- Phpactor CLI: move class to a new file path
 map("n", "<leader>cM", function()
     local current = vim.api.nvim_buf_get_name(0)
@@ -42,3 +47,13 @@ map("n", "<leader>cM", function()
     vim.api.nvim_echo({}, false, {})
     vim.cmd.checktime()
 end, { desc = "Phpactor: Move Class", buffer = true })
+
+-- No format-on-save for PHP: php-cs-fixer runs over the whole tree before commit,
+-- and intelephense would reindent entire files on every write.
+-- <leader>cf formats on demand; <leader>uF toggles autoformat for the buffer.
+vim.b.autoformat = false
+-- ftplugin.vim runs b:undo_ftplugin on every FileType event but only unlets
+-- b:undo_ftplugin/b:did_ftplugin, so the custom guard must clear itself too or
+-- a plain :e drops b:autoformat and never re-applies it.
+vim.b.undo_ftplugin = (vim.b.undo_ftplugin and vim.b.undo_ftplugin .. " | " or "")
+    .. "unlet! b:autoformat b:did_ftplugin_php_custom"

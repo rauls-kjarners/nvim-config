@@ -64,9 +64,19 @@ return {
                 group = vim.api.nvim_create_augroup("php_lsp_tweaks", { clear = true }),
                 callback = function(args)
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if not client then
+                        return
+                    end
                     -- Disable pull diagnostics for php-lsp to prevent duplicate push/pull diagnostics
-                    if client and client.name == "php-lsp" then
+                    if client.name == "php-lsp" then
                         client.server_capabilities.diagnosticProvider = false
+                    end
+                    -- intelephense advertises formatting as false yet serves the request;
+                    -- force it on so <leader>cf can format PHP on demand. Format-on-save
+                    -- stays off (after/ftplugin/php.lua) since cs-fixer runs pre-commit.
+                    if client.name == "intelephense" then
+                        client.server_capabilities.documentFormattingProvider = true
+                        client.server_capabilities.documentRangeFormattingProvider = true
                     end
                 end,
             })

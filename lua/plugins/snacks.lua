@@ -102,6 +102,19 @@ return {
                         },
                     },
                 },
+                layouts = {
+                    default = {
+                        layout = {
+                            width = 0, -- fullscreen
+                            height = 0,
+                            -- [2] is snacks' preview box; keep it keyed so the
+                            -- merge extends the default layout instead of replacing it
+                            [2] = { width = 0.6 },
+                        },
+                    },
+                    -- snacks' default preset falls back to `vertical` below 120 columns
+                    vertical = { layout = { width = 0, height = 0 } },
+                },
             },
             terminal = {
                 win = {
