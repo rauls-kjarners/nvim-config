@@ -59,7 +59,7 @@ require("lazy").setup({
 
         -- Util
         { import = "lazyvim.plugins.extras.util.dot" },
-        { import = "lazyvim.plugins.extras.util.rest" },
+        -- rest extra dropped: kulala.nvim moved to a new org, LazyVim still points at the dead repo
 
         -- import/override plugins
         { import = "plugins" },
