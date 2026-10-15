@@ -3,6 +3,7 @@ return {
     opts = function(_, opts)
         -- LazyVim's default lualine_z is just the clock (os.date("%R")); drop it
         opts.sections.lualine_z = {}
+        opts.sections.lualine_b = {}
         return opts
     end,
 }
